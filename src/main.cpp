@@ -20,7 +20,10 @@ void initialize() {
   // Autonomous Selector using LLEMU
 
   ez::as::auton_selector.autons_add({
-    Auton("Example Drive\n\nDrive forward and come back.", new_auton)
+    Auton("lRight", lRight),
+    Auton("lLeft", lLeft),
+    Auton("hRight", hRight),
+    Auton("quadrentTop", hLeft),
   });
 
   // Initialize chassis and auton selector
@@ -74,8 +77,8 @@ void autonomous() {
   chassis.drive_sensor_reset(); // Reset drive sensors to 0
   chassis.drive_brake_set(MOTOR_BRAKE_HOLD); // Set motors to hold.  This helps autonomous consistency
 
-  // ez::as::auton_selector.selected_auton_call(); // Calls selected auton from autonomous selector
-  new_auton();
+  ez::as::auton_selector.selected_auton_call(); // Calls selected auton from autonomous selector
+  
 }
 
 /**
@@ -107,22 +110,22 @@ void opcontrol() {
     //lift
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
       //up
-      lift.move(127);
+      lift.move(96);
     } else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
       //down
-      lift.move(-100);
+      lift.move(-64);
     } else {
       lift.move(0);
     }
 
     //spin
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
-      spin.move(50);
+      spin.move(32);
     } else {
       spin.move(0);
     }
     
-    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)){
+    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
       if (kewinMode){
         kewinMode = false;
       }else{
@@ -133,15 +136,15 @@ void opcontrol() {
     //hold
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
       if (kewinMode){
-        clawB.move(40);
+        clawB.move(16);
       }else{
-        clawB.move(-20);
+        clawB.move(-64);
       }
     } else {
       if (kewinMode){
-        clawB.move(-20);
+        clawB.move(-64);
       }else{
-        clawB.move(40);
+        clawB.move(16);
       }
     }
 
@@ -159,6 +162,14 @@ void opcontrol() {
       lift.move(64);
       pros::delay(300);
     }
+
+    //auton
+    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)){
+      autonomous();
+    }
+    
+    // double battery_level = pros::battery::get_capacity();
+    // master.print(0, 0, "Batt: %d%%   ", (int)battery_level); 
 
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
 
