@@ -41,3 +41,4 @@ inline pros::Motor gps(9, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_
 
 inline pros::Motor_Group lift({liftL, liftR});
 inline pros::Motor_Group spin({clawL, clawR});
+// inline pros::Motor_Group drive({driveRF, driveRB, driveLf, driveLB})

@@ -4,5 +4,8 @@
 
 extern Drive chassis;
 
-void new_auton();
+void lRight();
+void lLeft();
+void hRight();
+void hLeft();
 void default_constants();
