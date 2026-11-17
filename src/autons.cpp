@@ -17,7 +17,7 @@ void lRight(){
     toggle.move(127);
     pros::delay(1100);
     toggle.move(0);
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(110); //lifts the dr4b  
     pros::delay(300);
     lift.move(0);
@@ -32,7 +32,7 @@ void lRight(){
   chassis.pid_wait();
   pros::delay(150);
   pros::Task([]{
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(-70); //lowers the dr4b  
     pros::delay(500);
     lift.move(0);
@@ -55,7 +55,7 @@ void lLeft(){
     toggle.move(127);
     pros::delay(1100);
     toggle.move(0);
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(110); //lifts the dr4b  
     pros::delay(300);
     lift.move(0);
@@ -70,7 +70,7 @@ void lLeft(){
   chassis.pid_wait();
   pros::delay(150);
   pros::Task([]{
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(-70); //lifts the dr4b  
     pros::delay(500);
     lift.move(0);
@@ -93,7 +93,7 @@ void hRight(){
     toggle.move(127);
     pros::delay(1100);
     toggle.move(0);
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(110); //lifts the dr4b  
     pros::delay(400);
     lift.move(0);
@@ -108,7 +108,7 @@ void hRight(){
   chassis.pid_wait();
   pros::delay(150);
   pros::Task([]{
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(-70); //lifts the dr4b  
     pros::delay(500);
     lift.move(0);
@@ -130,7 +130,7 @@ void hLeft(){
     toggle.move(127);
     pros::delay(1100);
     toggle.move(0);
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(110); //lifts the dr4b  
     pros::delay(400);
     lift.move(0);
@@ -145,7 +145,7 @@ void hLeft(){
   chassis.pid_wait();
   pros::delay(150);
   pros::Task([]{
-    lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
     lift.move(-70); //lifts the dr4b  
     pros::delay(500);
     lift.move(0);

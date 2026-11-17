@@ -97,7 +97,7 @@ void autonomous() {
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
-  lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
   bool kewinMode = false;
   while (true) {
 
