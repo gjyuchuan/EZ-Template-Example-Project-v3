@@ -1,6 +1,6 @@
 #include "main.h"
 #include "subsystems.hpp"
-
+#include "autons.hpp"
 void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
@@ -94,6 +94,7 @@ void autonomous() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
@@ -120,7 +121,7 @@ void opcontrol() {
 
     //spin
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
-      spin.move(32);
+      spin.move(24);
     } else {
       spin.move(0);
     }
@@ -150,12 +151,11 @@ void opcontrol() {
 
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
       toggle.move(127);
-    } else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_B)){
-      toggle.move(-127);
     } else {
       toggle.move(0);
     }
 
+    
     //up a bit
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
       pros::delay(200);
@@ -175,4 +175,3 @@ void opcontrol() {
 
   }
 }
-

@@ -1,14 +1,15 @@
+#pragma once
 #include "main.h"
 
 
 inline ez::Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
-  //   the first port is used as the sensor
-  {-2,-1}
+  // the first port is used as the sensor
+  {-2,-1,-6}
 
   // Right Chassis Ports (negative port will reverse it!)
-  //   the first port is used as the sensor
-  ,{7,8}
+  // the first port is used as the sensor
+  ,{7,8,11}
 
   // IMU Port
   ,9
@@ -29,16 +30,18 @@ inline ez::Drive chassis (
 inline pros::Motor intake_motor(3, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor toggle(16, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor liftL(12, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
-inline pros::Motor liftR(20, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+// inline pros::Motor liftR(20, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor clawL(18);
 inline pros::Motor clawR(-17);
 inline pros::Motor clawB(15, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor gps(9, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 // inline pros::Motor driveRF(8, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+// inline pros::Motor driveLM(6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);//
 // inline pros::Motor driveRB(7, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
-// inline pros::Motor DriveLF(1, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+// inline pros::Motor driveLF(1, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+// inline pros::Motor driveRM(11,pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);//
 // inline pros::Motor driveLB(2, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 
-inline pros::Motor_Group lift({liftL, liftR});
+inline pros::Motor_Group lift({liftL});
 inline pros::Motor_Group spin({clawL, clawR});
 // inline pros::Motor_Group drive({driveRF, driveRB, driveLf, driveLB})
