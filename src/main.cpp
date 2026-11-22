@@ -99,7 +99,6 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   lift.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
-  bool kewinMode = false;
   while (true) {
 
     //chassis.opcontrol_tank(); // Tank control
@@ -125,28 +124,12 @@ void opcontrol() {
     } else {
       spin.move(0);
     }
-    
-    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
-      if (kewinMode){
-        kewinMode = false;
-      }else{
-        kewinMode = true;
-      }
-    }
 
     //hold
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-      if (kewinMode){
-        clawB.move(16);
-      }else{
-        clawB.move(-64);
-      }
-    } else {
-      if (kewinMode){
-        clawB.move(-64);
-      }else{
-        clawB.move(16);
-      }
+      clawB.move(-64);
+    }else{
+      clawB.move(16);
     }
 
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_X)){

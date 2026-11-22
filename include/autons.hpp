@@ -4,8 +4,8 @@
 
 extern Drive chassis;
 
-void lRight();
-void lLeft();
-void hRight();
-void hLeft();
-void default_constants();
+extern void lRight();
+extern void lLeft();
+extern void hRight();
+extern void hLeft();
+extern void default_constants();
