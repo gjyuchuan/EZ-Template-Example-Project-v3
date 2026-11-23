@@ -58,14 +58,14 @@ void lRight(){
   pros::delay(400/WAIT_TIME);
   chassis.pid_drive_set(-10, 32*DRIVE_SPEED, false, true); //backs up to get ready to turn to the other pin
   ///
-  
+
   chassis.pid_wait();
-  chassis.pid_turn_set(33, 64*TURN_SPEED, false); //turns to the right to get ready to drive to the other pin
+  chassis.pid_turn_set(31, 64*TURN_SPEED, false); //turns to the right to get ready to drive to the other pin
   lift.move(-32*LIFT_SPEED); //lowers the dr4b
   pros::delay(200/WAIT_TIME);
   lift.move(0);
   chassis.pid_wait();
-  chassis.pid_drive_set(30, 64*DRIVE_SPEED, false, true); //drives to the other pin
+  chassis.pid_drive_set(29, 64*DRIVE_SPEED, false, true); //drives to the other pin
   chassis.pid_wait();
   spin.move(32*SPIN_SPEED); //spins the spin motor to get ready to hold the pin
   chassis.pid_drive_set(6, 15*DRIVE_SPEED, false, true); //drive to pin
@@ -82,7 +82,7 @@ void lRight(){
   chassis.pid_turn_set(165, 64*TURN_SPEED, false); //turns to the right to drive to the other pin holder
   chassis.pid_wait();
   chassis.pid_drive_set(31, 48*DRIVE_SPEED, false, true); //drives to the other pin holder
-  lift.move(82*LIFT_SPEED); //lifts the dr4b
+  lift.move(82*LIFT_SPEED); //lifts the dr4b 
   pros::delay(600/WAIT_TIME);
   lift.move(0);
   chassis.pid_wait();
@@ -94,7 +94,7 @@ void lRight(){
   pros::delay(300/WAIT_TIME);
   chassis.pid_drive_set(-15, 48*DRIVE_SPEED, false, true); //backs up to get ready to turn to the other pin
   chassis.pid_wait();
-  chassis.pid_turn_set(128, 36*TURN_SPEED, false); //turns to the right to get ready to drive to the other pin
+  chassis.pid_turn_set(130, 36*TURN_SPEED, false); //turns to the right to get ready to drive to the other pin
   lift.move(-64*LIFT_SPEED); //lowers the dr4b
   pros::delay(400/WAIT_TIME);
   lift.move(0);

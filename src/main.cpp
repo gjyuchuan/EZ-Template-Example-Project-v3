@@ -32,7 +32,6 @@ void initialize() {
   master.rumble(".");
 }
 
-
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
@@ -41,8 +40,6 @@ void initialize() {
 void disabled() {
   // . . .
 }
-
-
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
@@ -57,8 +54,6 @@ void disabled() {
 void competition_initialize() {
   // . . .
 }
-
-
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -137,7 +132,6 @@ void opcontrol() {
     } else {
       toggle.move(0);
     }
-
     
     //up a bit
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
