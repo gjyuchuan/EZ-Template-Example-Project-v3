@@ -1,11 +1,62 @@
 #include "main.h"
 #include "subsystems.hpp"
 
+#include <atomic>
+
+namespace {
+pros::Motor clawB(15, pros::MotorGears::blue, pros::MotorUnits::degrees);
+std::atomic<int> clawB_request{0};
+constexpr std::uint32_t clawB_open_pulse_ms = 250;
+constexpr std::uint32_t clawB_close_pulse_ms = 300;
+
+void run_claw_b() {
+  bool moving = false;
+  bool closing = false;
+  bool holding = false;
+  std::uint32_t started_at = 0;
+  while (true) {
+    const int power = clawB_request.exchange(0);
+    const auto now = pros::millis();
+    if (pros::competition::is_disabled()) {
+      if (moving || holding) {
+        clawB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+        clawB.brake();
+        moving = false;
+        holding = false;
+      }
+    } else if (power != 0) {
+      clawB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      clawB.move(power);
+      started_at = now;
+      closing = power == static_cast<int>(ClawBAction::Close);
+      moving = true;
+      holding = false;
+    } else if (moving && now - started_at >=
+                             (closing ? clawB_close_pulse_ms : clawB_open_pulse_ms)) {
+      if (closing) {
+        clawB.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+      }
+      clawB.brake();
+      moving = false;
+      holding = closing;
+    }
+    pros::delay(10);
+  }
+}
+}  // namespace
+
+void move_claw_b(ClawBAction action) {
+  clawB_request.store(static_cast<int>(action));
+}
+
 void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
   
   pros::delay(500); // Stop the user from doing anything while legacy ports configure
+
+  clawB.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  static pros::Task clawB_task(run_claw_b);
 
   // Configure your chassis controls
   chassis.opcontrol_curve_buttons_toggle(true); // Enables modifying the controller curve with buttons on the joysticks
@@ -98,7 +149,9 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   lift.set_brake_mode_all(pros::E_MOTOR_BRAKE_HOLD);
-  bool kewinMode = false;
+  bool kewinMode = true;
+  bool claw_was_closed = false;
+  bool claw_commanded = false;
   while (true) {
 
     //chassis.opcontrol_tank(); // Tank control
@@ -120,32 +173,20 @@ void opcontrol() {
 
     //spin
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
-      spin.move(32);
-    } else {
       spin.move(0);
+    } else {
+      spin.move(32);
     }
     
-    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
-      if (kewinMode){
-        kewinMode = false;
-      }else{
-        kewinMode = true;
-      }
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+      kewinMode = !kewinMode;
     }
 
-    //hold
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-      if (kewinMode){
-        clawB.move(16);
-      }else{
-        clawB.move(-64);
-      }
-    } else {
-      if (kewinMode){
-        clawB.move(-64);
-      }else{
-        clawB.move(16);
-      }
+    const bool claw_closed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) != kewinMode;
+    if (!claw_commanded || claw_closed != claw_was_closed) {
+      move_claw_b(claw_closed ? ClawBAction::Close : ClawBAction::Open);
+      claw_was_closed = claw_closed;
+      claw_commanded = true;
     }
 
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
@@ -164,8 +205,9 @@ void opcontrol() {
     }
 
     //auton
-    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)){
+    if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){
       autonomous();
+      claw_commanded = false;
     }
     
     // double battery_level = pros::battery::get_capacity();

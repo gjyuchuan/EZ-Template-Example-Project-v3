@@ -12,7 +12,7 @@ const int SWING_SPEED = 90;
 
 void lRight(){
   pros::Task([]{
-    clawB.move(-64); //holds pin at start
+    move_claw_b(ClawBAction::Close);
     spin.move(127); //spins the spin motor to get ready to spin the toggle
     toggle.move(127);
     pros::delay(1100);
@@ -38,7 +38,7 @@ void lRight(){
     lift.move(0);
     pros::delay(100);
     spin.move(-20);
-    clawB.move(64);
+    move_claw_b(ClawBAction::AutonRelease);
     return 0;
   });
   pros::delay(300);
@@ -50,7 +50,7 @@ void lRight(){
 
 void lLeft(){
   pros::Task([]{
-    clawB.move(-64); //holds pin at start
+    move_claw_b(ClawBAction::Close);
     spin.move(127); //spins the spin motor to get ready to spin the toggle
     toggle.move(127);
     pros::delay(1100);
@@ -76,7 +76,7 @@ void lLeft(){
     lift.move(0);
     pros::delay(100);
     spin.move(-20);
-    clawB.move(64);
+    move_claw_b(ClawBAction::AutonRelease);
     return 0;
   });
   pros::delay(300);
@@ -88,7 +88,7 @@ void lLeft(){
 
 void hRight(){
   pros::Task([]{
-    clawB.move(-64); //holds pin at start
+    move_claw_b(ClawBAction::Close);
     spin.move(127); //spins the spin motor to get ready to spin the toggle
     toggle.move(127);
     pros::delay(1100);
@@ -114,7 +114,7 @@ void hRight(){
     lift.move(0);
     pros::delay(100);
     spin.move(-20);
-    clawB.move(64);
+    move_claw_b(ClawBAction::AutonRelease);
     return 0;
   });
   pros::delay(300);
@@ -125,7 +125,7 @@ void hRight(){
 }
 void hLeft(){
   pros::Task([]{
-    clawB.move(-64); //holds pin at start
+    move_claw_b(ClawBAction::Close);
     spin.move(127); //spins the spin motor to get ready to spin the toggle
     toggle.move(127);
     pros::delay(1100);
@@ -151,7 +151,7 @@ void hLeft(){
     lift.move(0);
     pros::delay(100);
     spin.move(-20);
-    clawB.move(64);
+    move_claw_b(ClawBAction::AutonRelease);
     return 0;
   });
   pros::delay(300);
@@ -185,7 +185,6 @@ void hLeft(){
   // spin.move(-32);
   // chassis.pid_drive_set(-10, 50, true); //backs up to get out of the way of the pin holder
   // chassis.pid_wait_until(9);
-  // clawB.move(32); //releases pin
   // chassis.pid_wait();
 
 }

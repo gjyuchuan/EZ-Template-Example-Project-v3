@@ -32,7 +32,13 @@ inline pros::Motor liftL(12, pros::MotorGears::blue, pros::MotorUnits::degrees);
 inline pros::Motor liftR(-20, pros::MotorGears::blue, pros::MotorUnits::degrees);
 inline pros::Motor clawL(18);
 inline pros::Motor clawR(-17);
-inline pros::Motor clawB(15, pros::MotorGears::blue, pros::MotorUnits::degrees);
+enum class ClawBAction {
+  Close = -90,
+  Open = 16,
+  AutonRelease = 64,
+};
+
+void move_claw_b(ClawBAction action);
 inline pros::Motor gps(-9, pros::MotorGears::blue, pros::MotorUnits::degrees);
 // inline pros::Motor driveRF(8, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 // inline pros::Motor driveRB(7, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
