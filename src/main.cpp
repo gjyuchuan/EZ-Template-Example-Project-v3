@@ -115,9 +115,9 @@ void opcontrol() {
 
     //spin
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
-      spin.move(24);
-    } else {
       spin.move(0);
+    } else {
+      spin.move(32);
     }
 
     //hold
