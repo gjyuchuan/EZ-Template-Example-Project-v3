@@ -21,11 +21,11 @@ pros mu --slot 2 --name "Alex Test"
 ```
 
 ### Team Slot Assignments
-* **Slot 1:** Main Competition Code *(Do not overwrite without testing!)*
-* **Slot 2:** F
+* **Slot 1:** Main Competition Code *(Do not overwrite without testing!)* (r)
+* **Slot 2:** open
 * **Slot 3:** J
-* **Slot 4:** K
+* **Slot 4:** open
 * **Slot 5:** L
-* **Slot 6:** O
-* **Slot 7:** R
+* **Slot 6:** open
+* **Slot 7:** K
 * **Slot 8:** Open / Experimental Testing
