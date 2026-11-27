@@ -1,6 +1,11 @@
 #include "main.h"
 #include "subsystems.hpp"
 #include "autons.hpp"
+#include "brain_display.hpp"
+#include "lemlib/api.hpp"
+
+ASSET(a12_txt);
+
 void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
@@ -17,18 +22,9 @@ void initialize() {
   // chassis.opcontrol_curve_buttons_left_set (pros::E_CONTROLLER_DIGITAL_LEFT, pros::E_CONTROLLER_DIGITAL_RIGHT); // If using tank, only the left side is used. 
   // chassis.opcontrol_curve_buttons_right_set(pros::E_CONTROLLER_DIGITAL_Y,    pros::E_CONTROLLER_DIGITAL_A);
 
-  // Autonomous Selector using LLEMU
-
-  ez::as::auton_selector.autons_add({
-    Auton("lRight", lRight),
-    Auton("lLeft", lLeft),
-    Auton("hRight", hRight),
-    Auton("quadrentTop", hLeft),
-  });
-
   // Initialize chassis and auton selector
   chassis.initialize();
-  ez::as::initialize();
+  brain_display::initialize();
   master.rumble(".");
 }
 
@@ -72,13 +68,13 @@ void competition_initialize() {
  * from where it left off.
  */
 void autonomous() {
+  chassis.setPose(0, 0, 0);
   chassis.pid_targets_reset(); // Resets PID targets to 0
   chassis.drive_imu_reset(); // Reset gyro position to 0
   chassis.drive_sensor_reset(); // Reset drive sensors to 0
   chassis.drive_brake_set(MOTOR_BRAKE_HOLD); // Set motors to hold.  This helps autonomous consistency
-
-  ez::as::auton_selector.selected_auton_call(); // Calls selected auton from autonomous selector
-  
+  chassis.follow();
+  brain_display::run_selected_auton();
 }
 
 /**

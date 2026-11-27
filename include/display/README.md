@@ -69,3 +69,48 @@ See [CONTRIBUTING.md](https://github.com/littlevgl/lvgl/blob/master/docs/CONTRIB
 If you are pleased with the graphics library, found it useful or be happy with the support you got, please help its further development:
 
 [![Donate](https://littlevgl.com/donate_dir/donate_btn.png)](https://littlevgl.com/donate)
+
+
+   rectangle(171, 42, 2, 0xFFFF00, 0x000000, &selectedPins, 0, 182, 6);
+   text("Low/High", 24, 0xFFFFFF, &selectedPins, 2, 196, 18);
+   slider(36, 0, 1, 2, 0xFFFF00, 0x000000, 0, 0x000000, 0xFFFFFF, selectedPins, 1, 300, 18);
+
+    //preload
+    button(0, 2, 83, 42, 2, 0xFFFF00, 0x000000, pinP, 1, 6, 53);
+    text("Pre: ", 24, 0xFFFFFF, nullptr, 2, 14, 65, &pinP);
+
+    //A0
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinA0, 1, 94, 53);
+    text("A0: ", 24, 0xFFFFFF, nullptr, 2, 107, 65, &pinA0);
+
+    //A1
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinA1, 1, 182, 53);
+    text("A1: ", 24, 0xFFFFFF, nullptr, 2, 196, 65, &pinA1);
+
+    //A2
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinA2, 1, 270, 53);
+    text("A2: ", 24, 0xFFFFFF, nullptr, 2, 283, 65, &pinA2);
+
+    //A3
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinA3, 1, 6, 100);
+    text("A3: ", 24, 0xFFFFFF, nullptr, 2, 14, 112, &pinA3);
+
+    //A4
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinA4, 1, 94, 100);
+    text("A4: ", 24, 0xFFFFFF, nullptr, 2, 107, 112, &pinA4);
+
+    //A5
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinA5, 1, 182, 100);
+    text("A5: ", 24, 0xFFFFFF, nullptr, 2, 196, 112, &pinA5);
+
+    //B5
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinB5, 1, 270, 100);
+    text("B5: ", 24, 0xFFFFFF, nullptr, 2, 283, 112, &pinB5);
+
+    //C5
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinC5, 1, 6, 147);
+    text("C5: ", 24, 0xFFFFFF, nullptr, 2, 14, 159, &pinC5);
+
+    //D5
+    button(1, 5, 83, 42, 2, 0xFFFF00, 0x000000, pinD5, 1, 94, 147);
+    text("D5: ", 24, 0xFFFFFF, nullptr, 2, 107, 159, &pinD5);
