@@ -3,7 +3,7 @@
 ## What is PID?
 Think of **PID** as your robot’s **smart cruise control + automatic brakes**. Without tuning it, your robot either stops short, slides past the target, or drifts off-angle—especially as the battery drains.
 
-We only adjust **two numbers** in `src/pid_tuning.cpp`:
+We only adjust **two numbers** in `src/pid.cpp`:
 * **`kP` (Gas Pedal):** How hard the robot pushes toward the target.
 * **`kD` (Brakes):** How hard the robot slows down right before the target so it stops on a dime without overshooting.
 
@@ -13,11 +13,12 @@ We only adjust **two numbers** in `src/pid_tuning.cpp`:
 3. **Cleaner code:** Cuts out messy "baby-step" fixes.
 
 ---
+
 ## 💻 How Our Code Improves After Tuning
 
 Right now, `lRight()` has to use **3 extra moves, slow speeds, and delays** just to back up and turn because the robot drifts:
 
-### ❌ BEFORE (Untuned — Clunky & Slow)
+### ❌ BEFORE (Untuned — Clunky & Slow -- src/autons.cpp)
 ```cpp
 // Split into 3 choppy steps + delays to fix drift
 chassis.pid_drive_set(-5, 32*DRIVE_SPEED, false, true); 
@@ -29,7 +30,7 @@ chassis.pid_wait();
 chassis.pid_turn_set(33, 64*TURN_SPEED, false); 
 ```
 
-### ✅ AFTER (Tuned — Fast, Clean & Accurate)
+### ✅ AFTER (Tuned — Fast, Clean & Accurate -- src/autons.cpp)
 ```cpp
 // 1 straight backup + 1 crisp turn at higher speed (zero delays!)
 chassis.pid_drive_set(-15_in, 80); 
@@ -37,6 +38,16 @@ chassis.pid_wait();
 chassis.pid_turn_set(33_deg, 80); 
 chassis.pid_wait();
 ```
+
+---
+
+## 🛠️ How to Run & Tune
+
+1. **Edit Constants:** Open `src/pid_tuning.cpp` and adjust your `kP` and `kD` values.
+2. **Upload Code:** Build and upload your updated code to the V5 Brain.
+3. **Line Up:** Place the robot squarely on a field tile seam with plenty of open space ahead.
+4. **Select Routine:** On the Brain's **Auton Menu**, select **PID Tuning**.
+5. **Run & Observe:** Start the autonomous routine, watch how the robot stops, and use the cheat sheet below to tweak your values until it hits the mark.
 
 ---
 
@@ -52,4 +63,3 @@ chassis.pid_wait();
 | **Goes past** the line (overshoots) | **Increase `kD`** (+10 or +15) |
 | **Shakes/wobbles** at the end | **Decrease `kD`** (-5 or -10) |
 | **Stops dead on the tile seam** | **Done!** Save those numbers |
-

@@ -47,5 +47,5 @@ inline pros::Motor_Group spin({clawL, clawR});
 // inline pros::Motor_Group drive({driveRF, driveRB, driveLf, driveLB})
 
 // Distance Sensors in the claw (replace 10 and 11 with your Brain port numbers)
-//inline pros::Distance distLeft(10);
-//inline pros::Distance distRight(11);
+inline pros::Distance distLeft(10);
+inline pros::Distance distRight(11);

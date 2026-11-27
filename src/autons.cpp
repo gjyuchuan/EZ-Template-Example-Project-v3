@@ -361,16 +361,15 @@ void hLeft(){
 ///
 // Constants
 ///
-void default_constants() {
-  chassis.pid_heading_constants_set(3, 0, 20);
-  chassis.pid_drive_constants_set(13, 0, 100);
-  chassis.pid_turn_constants_set(6, 0, 20);
-  chassis.pid_swing_constants_set(8, 0, 30);
+// void default_constants() {
+//   chassis.pid_heading_constants_set(3, 0, 20);
+//   chassis.pid_drive_constants_set(13, 0, 100);
+//   chassis.pid_turn_constants_set(6, 0, 20);
+//   chassis.pid_swing_constants_set(8, 0, 30);
 
-  chassis.pid_turn_exit_condition_set(100_ms, 3_deg, 200_ms, 7_deg, 300_ms, 500_ms);
-  chassis.pid_swing_exit_condition_set(300_ms, 3_deg, 500_ms, 7_deg, 750_ms, 750_ms);
-  chassis.pid_drive_exit_condition_set(30_ms, 1_in, 50_ms, 3_in, 100_ms, 500_ms);
+//   chassis.pid_turn_exit_condition_set(100_ms, 3_deg, 200_ms, 7_deg, 300_ms, 500_ms);
+//   chassis.pid_swing_exit_condition_set(300_ms, 3_deg, 500_ms, 7_deg, 750_ms, 750_ms);
+//   chassis.pid_drive_exit_condition_set(30_ms, 1_in, 50_ms, 3_in, 100_ms, 500_ms);
 
-  chassis.slew_drive_constants_set(7_in, 80);
-}
-
+//   chassis.slew_drive_constants_set(7_in, 80);
+// }
