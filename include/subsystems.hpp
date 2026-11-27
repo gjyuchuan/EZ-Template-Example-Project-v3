@@ -45,3 +45,7 @@ inline pros::Motor gps(9, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_
 inline pros::Motor_Group lift({liftL});
 inline pros::Motor_Group spin({clawL, clawR});
 // inline pros::Motor_Group drive({driveRF, driveRB, driveLf, driveLB})
+
+// Distance Sensors in the claw (replace 10 and 11 with your Brain port numbers)
+//inline pros::Distance distLeft(10);
+//inline pros::Distance distRight(11);

@@ -9,3 +9,5 @@ extern void lLeft();
 extern void hRight();
 extern void hLeft();
 extern void default_constants();
+extern void pid_tuning_test();
+extern void smart_claw_test();

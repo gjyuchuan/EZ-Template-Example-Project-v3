@@ -24,6 +24,8 @@ void initialize() {
     Auton("lLeft", lLeft),
     Auton("hRight", hRight),
     Auton("quadrentTop", hLeft),
+    Auton("PID Tuning Test\n\n90 deg turn & 24 in drive", pid_tuning_test),
+    Auton("Smart Claw Test", smart_claw_test)
   });
 
   // Initialize chassis and auton selector
